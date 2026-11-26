@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="192" height="192">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B192C"/>
+      <stop offset="50%" stop-color="#1E3E62"/>
+      <stop offset="100%" stop-color="#040D1A"/>
+    </linearGradient>
+    <linearGradient id="liquidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00D2FC"/>
+      <stop offset="100%" stop-color="#0077B6"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#2DD4BF"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="110" fill="url(#bgGrad)"/>
+  <rect width="504" height="504" x="4" y="4" rx="106" fill="none" stroke="url(#accentGrad)" stroke-width="6" stroke-opacity="0.4"/>
+  <ellipse cx="256" cy="270" rx="160" ry="60" fill="none" stroke="#38BDF8" stroke-width="6" stroke-dasharray="10 8" opacity="0.5" transform="rotate(-25 256 270)"/>
+  <ellipse cx="256" cy="270" rx="160" ry="60" fill="none" stroke="#2DD4BF" stroke-width="6" stroke-dasharray="10 8" opacity="0.5" transform="rotate(25 256 270)"/>
+  <path d="M226 130 L226 210 L145 345 C132 367 148 395 174 395 L338 395 C364 395 380 367 367 345 L286 210 L286 130" 
+        fill="none" stroke="#CBD5E1" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="210" y="116" width="92" height="18" rx="9" fill="#CBD5E1"/>
+  <path d="M172 340 L160 360 C154 370 162 383 174 383 L338 383 C350 383 358 370 352 360 L340 340 Q300 355 256 345 Q212 335 172 340 Z" 
+        fill="url(#liquidGrad)"/>
+  <circle cx="230" cy="355" r="9" fill="#E0F2FE"/>
+  <circle cx="280" cy="345" r="12" fill="#E0F2FE"/>
+  <circle cx="250" cy="325" r="7" fill="#E0F2FE"/>
+  <polygon points="256,66 264,86 284,92 264,98 256,118 248,98 228,92 248,86" fill="#F8FAFC"/>
+</svg>

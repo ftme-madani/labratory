@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Vazirmatn', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Scientific Color Tokens */
+  --color-science-navy-950: #040D1A;
+  --color-science-navy-900: #0B192C;
+  --color-science-navy-800: #132742;
+  --color-science-navy-700: #1E3E62;
+  --color-science-navy-600: #2C5788;
+  
+  --color-science-cyan-500: #00D2FC;
+  --color-science-cyan-600: #00A8CC;
+  --color-science-cyan-700: #0077B6;
+  
+  --color-science-teal-400: #2DD4BF;
+  --color-science-teal-500: #14B8A6;
+
+  --color-lab-bench: #0F172A;
+  --color-lab-grid: rgba(56, 189, 248, 0.05);
+}
+
+:root {
+  color-scheme: light;
+}
+
+:root.dark, [data-theme="dark"] {
+  color-scheme: dark;
+}
+
+html {
+  font-family: var(--font-sans);
+  direction: rtl;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   Day Mode (حالت روز - آزمایشگاه طبیعی و صمیمی مدرسه با نور طبیعی)
+   ========================================================================== */
+html.light body, :root:not(.dark) body {
+  margin: 0;
+  padding: 0;
+  background-color: #f3f6fa;
+  background-image: 
+    radial-gradient(circle at 12% 10%, rgba(254, 240, 138, 0.45) 0%, transparent 40%),
+    radial-gradient(circle at 88% 8%, rgba(186, 230, 253, 0.55) 0%, transparent 45%),
+    radial-gradient(circle at 50% 95%, rgba(209, 250, 229, 0.40) 0%, transparent 40%);
+  background-attachment: fixed;
+  color: #1e293b;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ==========================================================================
+   Night Mode (حالت شب - آزمایشگاه با تم تیره)
+   ========================================================================== */
+html.dark body, [data-theme="dark"] body {
+  margin: 0;
+  padding: 0;
+  background-color: #0b112c;
+  background-image: 
+    radial-gradient(circle at 10% 15%, rgba(14, 165, 233, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 90% 10%, rgba(168, 85, 247, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(245, 158, 11, 0.12) 0%, transparent 35%);
+  background-attachment: fixed;
+  color: #F8FAFC;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Accessible outline on keyboard navigation */
+:focus-visible {
+  outline: 2px solid #0284c7;
+  outline-offset: 3px;
+  box-shadow: 0 0 10px rgba(2, 132, 199, 0.35);
+}
+
+/* Laboratory Grid - Natural graph paper in day mode, blueprint in night mode */
+html.light .lab-grid-bg, :root:not(.dark) .lab-grid-bg {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.15) 1px, transparent 1px);
+}
+html.dark .lab-grid-bg, [data-theme="dark"] .lab-grid-bg {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(56, 189, 248, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(168, 85, 247, 0.10) 1px, transparent 1px);
+}
+
+html.light .lab-grid-dense, :root:not(.dark) .lab-grid-dense {
+  background-size: 16px 16px;
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+}
+html.dark .lab-grid-dense, [data-theme="dark"] .lab-grid-dense {
+  background-size: 16px 16px;
+  background-image: 
+    linear-gradient(to right, rgba(56, 189, 248, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(168, 85, 247, 0.08) 1px, transparent 1px);
+}
+
+/* Surfaces */
+html.light .glass-panel, :root:not(.dark) .glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.06);
+}
+html.dark .glass-panel, [data-theme="dark"] .glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+}
+
+/* Realistic, Natural Laboratory Workbench Surface */
+html.light .natural-workbench, :root:not(.dark) .natural-workbench {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 40%, #eef2f6 100%);
+  border: 2px solid #cbd5e1;
+  box-shadow: 
+    0 10px 25px -5px rgba(15, 23, 42, 0.08),
+    0 4px 10px -2px rgba(15, 23, 42, 0.04),
+    inset 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+html.dark .natural-workbench, [data-theme="dark"] .natural-workbench {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(10, 16, 32, 0.98) 50%, rgba(15, 23, 42, 0.95) 100%);
+  border: 2px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.5);
+}
+
+/* Student Cards */
+html.light .student-card-glow, :root:not(.dark) .student-card-glow {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.06);
+  transition: all 0.25s ease-in-out;
+}
+html.light .student-card-glow:hover, :root:not(.dark) .student-card-glow:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 12px 28px -6px rgba(14, 165, 233, 0.18);
+  transform: translateY(-3px);
+}
+html.dark .student-card-glow, [data-theme="dark"] .student-card-glow {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.9) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.5);
+  transition: all 0.25s ease-in-out;
+}
+html.dark .student-card-glow:hover, [data-theme="dark"] .student-card-glow:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 16px 32px -8px rgba(56, 189, 248, 0.25), 0 0 20px rgba(168, 85, 247, 0.2);
+  transform: translateY(-3px);
+}
+
+/* Custom Scrollbars (RTL-Friendly) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+html.light ::-webkit-scrollbar-track, :root:not(.dark) ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+html.light ::-webkit-scrollbar-thumb, :root:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+html.light ::-webkit-scrollbar-thumb:hover, :root:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+html.dark ::-webkit-scrollbar-track, [data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #040D1A;
+}
+html.dark ::-webkit-scrollbar-thumb, [data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #1E3E62;
+  border-radius: 4px;
+}
+html.dark ::-webkit-scrollbar-thumb:hover, [data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #00A8CC;
+}
+
+/* Accessible Motion & Transitions */
+@keyframes shake-error {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 210, 252, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 210, 252, 0.7);
+  }
+}
+
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-shake {
+  animation: shake-error 0.4s ease-in-out;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+.animate-float {
+  animation: float-subtle 3s infinite ease-in-out;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
