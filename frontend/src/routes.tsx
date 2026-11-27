@@ -12,6 +12,7 @@ import { StudentDashboardPage } from './pages/StudentDashboardPage'
 import { AttemptHistoryPage } from './pages/AttemptHistoryPage'
 import { TeacherDashboardPage } from './pages/TeacherDashboardPage'
 import { TeacherManagementPage } from './pages/TeacherManagementPage'
+import { TeacherAnalyticsPage } from './pages/TeacherAnalyticsPage'
 import { DesignSystemShowcase } from './pages/DesignSystemShowcase'
 
 export const AppRoutes: React.FC = () => {
@@ -43,6 +44,7 @@ export const AppRoutes: React.FC = () => {
 
         {/* 8. داشبورد معلم */}
         <Route path="/teacher/dashboard" element={<TeacherDashboardPage />} />
+        <Route path="/teacher/analytics" element={<TeacherAnalyticsPage />} />
 
         {/* 9. مدیریت محتوای آزمایش‌ها */}
         <Route path="/teacher/experiments" element={<TeacherManagementPage />} />

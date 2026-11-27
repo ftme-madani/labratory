@@ -159,9 +159,14 @@ export const TeacherDashboardPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="relative z-10 flex items-center gap-3">
+        <div className="relative z-10 flex flex-wrap items-center gap-3">
+          <Link to="/teacher/analytics">
+            <Button variant="cyan" size="md" rightIcon={<AlertTriangle className="w-4 h-4 text-amber-300" />} className="font-bold shadow-md shadow-cyan-500/20">
+              تحلیل کج‌فهمی‌های علمی 🎯
+            </Button>
+          </Link>
           <Link to="/teacher/experiments">
-            <Button variant="cyan" size="md" rightIcon={<Settings className="w-4 h-4" />}>
+            <Button variant="outline" size="md" rightIcon={<Settings className="w-4 h-4" />}>
               مدیریت و انتشار آزمایش‌ها
             </Button>
           </Link>

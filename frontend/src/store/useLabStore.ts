@@ -389,6 +389,28 @@ export const useLabStore = create<LabStoreState>((set, get) => ({
           src = 'ph-meter'
           tgt = 'beaker-lemon'
         }
+      } else if (experiment.slug === 'vinegar-baking-soda-reaction') {
+        if (currentStepIndex === 1) {
+          simActionType = 'SELECT_BEAKER'
+          src = 'beaker_glass'
+          tgt = undefined
+        } else if (currentStepIndex === 2) {
+          simActionType = 'POUR_VINEGAR'
+          src = 'bottle_vinegar'
+          tgt = 'beaker_glass'
+        } else if (currentStepIndex === 3) {
+          simActionType = 'ADD_BAKING_SODA'
+          src = 'jar_baking_soda'
+          tgt = 'beaker_glass'
+        } else {
+          simActionType = 'OBSERVE_REACTION'
+          src = 'beaker_glass'
+          tgt = undefined
+        }
+      } else if (experiment.slug === 'simple-pendulum-motion') {
+        simActionType = 'RELEASE_AND_MEASURE'
+        src = 'pendulum_bob'
+        tgt = undefined
       }
 
       simulationService

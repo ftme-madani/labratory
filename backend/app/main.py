@@ -39,6 +39,10 @@ app.add_middleware(
 # اتصال روترهای اصلی API
 app.include_router(api_router, prefix="/api")
 
+# دسترسی مستقیم به روتر معلم تحت /api/teacher برای سازگاری کامل
+from .api.v1.teacher import router as teacher_direct_router
+app.include_router(teacher_direct_router, prefix="/api")
+
 @app.get("/api/health", tags=["Health & Diagnostics"])
 def health_check():
     """
