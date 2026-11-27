@@ -29,6 +29,9 @@ import {
 import { Badge } from '../components/ui/Badge'
 import { Button } from '../components/ui/Button'
 import { Modal } from '../components/ui/Modal'
+import { MisconceptionCharts } from '../components/analytics/MisconceptionCharts'
+import { downloadPdfReport } from '../services/pdfReportService'
+import { FileText } from 'lucide-react'
 
 export const TeacherAnalyticsPage: React.FC = () => {
   const { theme } = useThemeStore()
@@ -171,6 +174,17 @@ export const TeacherAnalyticsPage: React.FC = () => {
               }`}
             >
               دانلود CSV کلاس
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => downloadPdfReport({ overview, misconceptions, students })}
+              rightIcon={<FileText className="w-4 h-4 text-rose-500" />}
+              className={`font-bold rounded-xl ${
+                isLight ? 'border-slate-300 text-slate-700 hover:bg-slate-100' : 'border-slate-700 text-slate-200'
+              }`}
+            >
+              دانلود PDF گزارش
             </Button>
             <Button
               variant="outline"
@@ -371,7 +385,16 @@ export const TeacherAnalyticsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* ۴. نمودار و تحلیل کج‌فهمی‌های شایع (Misconceptions Frequency Bar Chart) */}
+      {/* نمودارهای تحلیلی واقعی (Real SVG Charts: Bar & Donut) */}
+      <MisconceptionCharts
+        misconceptions={misconceptions}
+        successRate={overview?.overallSuccessRate ?? 0}
+        totalAttempts={overview?.totalAttempts ?? 0}
+        completedAttempts={overview?.completedAttempts ?? 0}
+        isLight={isLight}
+      />
+
+      {/* ۴. تفکیک و کالبدشکافی کج‌فهمی‌های شایع */}
       <div className={`p-6 sm:p-8 rounded-3xl border transition-all ${
         isLight ? 'bg-white border-slate-200 shadow-sm' : 'bg-slate-900/90 border-indigo-500/25 shadow-xl'
       }`}>

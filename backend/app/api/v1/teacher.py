@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, status, Response
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 from typing import List, Optional, Dict, Any
-from datetime import datetime, timezone
+from datetime import datetime, timezone, date
 import csv
 import io
 
@@ -331,11 +331,11 @@ def get_student_analytics_logs(
         .filter(ExperimentAttempt.user_id == student_id)
     )
 
-    if experiment_id:
+    if isinstance(experiment_id, int):
         query = query.filter(ExperimentAttempt.experiment_id == experiment_id)
-    if date_from:
+    if isinstance(date_from, (datetime, date)):
         query = query.filter(StepActionLog.created_at >= date_from)
-    if date_to:
+    if isinstance(date_to, (datetime, date)):
         query = query.filter(StepActionLog.created_at <= date_to)
 
     logs = query.order_by(StepActionLog.created_at.desc()).all()
@@ -343,7 +343,7 @@ def get_student_analytics_logs(
     log_items: List[StudentLogItem] = []
     for log in logs:
         cat = HINT_CATALOG.get(log.error_code) if log.error_code else None
-        err_title = cat.get("error_title") if cat else (f"خطای {log.error_code}" if log.error_code else None)
+        err_title = getattr(cat, "level1_question", None) if cat else (f"خطای {log.error_code}" if log.error_code else None)
         log_items.append(StudentLogItem(
             id=log.id,
             attempt_id=log.attempt_id,
